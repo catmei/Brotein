@@ -1,0 +1,19 @@
+{
+    "annotations": [
+        {
+            "label": "Grilled Salmon",
+            "bbox": [882, 795, 1390, 812],
+            "color": [255, 0, 0]
+        },
+        {
+            "label": "Boiled Pumpkin",
+            "bbox": [1088, 403, 1114, 583],
+            "color": [0, 255, 0]
+        },
+        {
+            "label": "Mixed Vegetables with Mushrooms",
+            "bbox": [1193, 328, 1544, 953],
+            "color": [0, 0, 255]
+        }
+    ]
+}

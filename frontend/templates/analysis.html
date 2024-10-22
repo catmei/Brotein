@@ -1,0 +1,78 @@
+<!-- analysis.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brotein App - Food Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_analysis.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="/">Log Out</a> |
+        <a href="/user_info">User Info</a> |
+        <a href="/analysis">Analyze</a> |
+        <a href="/history">History</a>
+    </nav>
+
+    <div class="container">
+        <h1>Food Analysis</h1>
+                <!-- Instructions -->
+
+        <div id="tdee-target-box">
+            <h3>Today's Target</h3>
+            <ul>
+                <li>Calories (TDEE): <br> <span id="tdee-value">-- kcal</span></li>
+                <li>Protein: <br> <span id="protein-target">-- g</span></li>
+                <li>Carbohydrates: <br> <span id="carbs-target">-- g</span></li>
+                <li>Fat: <br> <span id="fat-target">-- g</span></li>
+            </ul>
+        </div>
+
+        <div class="box-container">
+            <!-- Upload box -->
+            <div id="upload-box">
+                <div id="upload-icon">+</div>
+                <img id="image-preview" src="" alt="Image Preview" />
+                <!-- Hidden file input -->
+                <input type="file" id="food-image" name="food-image" accept="image/*" style="display: none;">
+            </div>
+
+            <div id="manual-input-box">
+                <form id="manual-input-form">
+                    <label for="manual-protein">Protein (g):</label>
+                    <input type="number" id="manual-protein" name="manual-protein" required>
+
+                    <label for="manual-carbohydrates">Carbohydrates (g):</label>
+                    <input type="number" id="manual-carbohydrates" name="manual-carbohydrates" required>
+
+                    <label for="manual-fat">Fat (g):</label>
+                    <input type="number" id="manual-fat" name="manual-fat" required>
+                </form>
+            </div>
+        </div>
+
+        <div id="instructions">
+            <p>
+                upload an image or input nutrition manually (or both)
+            </p>
+        </div>
+
+        <!-- Analyze button remains below all boxes -->
+        <form id="food-upload-form" enctype="multipart/form-data">
+            <button type="submit" id="analyze-button">Analyze</button>
+        </form>
+
+        <!-- Save button and charts -->
+        <button id="save-button" style="display: none;">Save</button>
+        <canvas id="caloriesPieChart" width="400" height="400" style="display:none"></canvas>
+        <canvas id="summaryChart" width="400" height="400" style="display:none"></canvas>
+    </div>
+
+
+    <!-- Include JavaScript -->
+    <script src="{{ url_for('static', filename='js/analysis.js') }}"></script>
+</body>
+</html>

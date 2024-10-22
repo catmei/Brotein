@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brotein App - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style_homepage.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Brotein App!</h1>
+        <p>Your fitness and nutrition suggestion platform.</p>
+
+        <!-- Signup Form -->
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <form id="signup-form">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" name="username" required>
+
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" name="password" required>
+
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+
+        <!-- Login Form -->
+        <div class="form-container">
+            <h2>Login</h2>
+            <form id="login-form">
+                <label for="login-username">Username</label>
+                <input type="text" id="login-username" name="username" required>
+
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <!-- Hidden success message -->
+        <div id="success-message" style="display: none;">
+            <p>Login or signup successful! Redirecting to analysis page...</p>
+        </div>
+    </div>
+
+    <!-- Include JavaScript -->
+    <script src="{{ url_for('static', filename='js/homepage.js') }}"></script>
+</body>
+</html>
