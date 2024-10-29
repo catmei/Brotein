@@ -2,8 +2,10 @@
     "annotations": [
         {
             "label": "Grilled Salmon",
+            "pixel": "600*800",
             "bbox": [882, 795, 1390, 812],
-            "color": [255, 0, 0]
+            "color": [255, 0, 0],
+            "nutrition": []
         },
         {
             "label": "Boiled Pumpkin",
