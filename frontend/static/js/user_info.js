@@ -89,7 +89,7 @@ function validateForm() {
     const saveButton = document.getElementById('save-btn');
 
     // Check if all fields are filled
-    if (height && weight && age && target && preference && gender && activity_level) {
+    if (height && weight && age) {
         saveButton.disabled = false;
     } else {
         saveButton.disabled = true;
