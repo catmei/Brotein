@@ -1,0 +1,35 @@
+from PIL import Image, ImageDraw, ImageFont
+
+image_path = "backend\\seg\\S__7069700.jpg"  # replace with your image file path
+
+try:
+    image = Image.open(image_path)
+except IOError:
+    print(f"Unable to open image file: {image_path}")
+    exit(1)
+
+annotations = {
+    "pan-fried salmon": [107, 45, 608, 442],
+    "steamed sweet potatoes": [424, 239, 999, 670],
+    "creamy mushroom and corn dish": [41, 481, 572, 994]
+}
+
+draw = ImageDraw.Draw(image)
+# Use a default font if no font file is found
+try:
+    font = ImageFont.truetype("arial.ttf", 16)  # Replace with your font file if needed
+except IOError:
+    font = ImageFont.load_default()
+
+image_width, image_height = image.size
+
+for food_name, bbox in annotations.items():
+    ymin, xmin, ymax, xmax = map(int, bbox)
+    xmin = (xmin / 1000) * image_width
+    xmax = (xmax / 1000) * image_width
+    ymin = (ymin / 1000) * image_height
+    ymax = (ymax / 1000) * image_height
+    draw.rectangle(((xmin, ymin), (xmax, ymax)), outline="red", width=2)
+    draw.text((xmin, ymin - 20), food_name, fill="red", font=font)  # Adjust position as needed
+
+image.show()  # open the annotated image

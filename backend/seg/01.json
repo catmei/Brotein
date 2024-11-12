@@ -19,3 +19,21 @@
         }
     ]
 }
+
+
+
+
+  "pixel": 600
+
+        {
+            "label": "Grilled Salmon",
+            "bbox": [882, 795, 1390, 812],
+            "color": [255, 0, 0],
+            "nutrition": []
+        },
+        {
+            "label": "Grilled Salmon",
+            "bbox": [882, 795, 1390, 812],
+            "color": [255, 0, 0],
+            "nutrition": []
+        },
