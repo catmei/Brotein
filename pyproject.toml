@@ -23,7 +23,6 @@ boto3 = "^1.35.22"
 pillow = "^10.4.0"
 matplotlib = "^3.9.2"
 opencv-python = "^4.10.0.84"
-ultralytics = "^8.3.15"
 
 
 [tool.poetry.group.dev.dependencies]
