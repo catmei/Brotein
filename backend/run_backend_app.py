@@ -12,7 +12,7 @@ app = FastAPI(debug=True)
 # Configure CORS settings to allow the frontend (Flask) to access this backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5000", "http://52.65.239.138:5000"],
+    allow_origins=["http://127.0.0.1:3000", "http://52.65.239.138:3000", "https://e8b2-118-232-113-8.ngrok-free.app"],
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers

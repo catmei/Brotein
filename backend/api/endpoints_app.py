@@ -4,6 +4,9 @@ from backend.utils.db_session import get_db
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from typing import Any, Optional
+import shutil
+import os
+from backend.utils.gemini_api import FoodRecognition
 
 router = APIRouter()
 
@@ -417,3 +420,53 @@ async def get_diet_history(db: Session = Depends(get_db), username: str = Depend
         message="Diet history retrieved successfully",
         data={"diet_history": diet_history}
     )
+
+
+@router.post("/analyze_gemini", response_model=BaseResponse, responses={
+    200: {
+        "description": "Gemini Analysis Completed Successfully",
+        "content": {
+            "application/json": {
+                "example": {
+                    "message": "Gemini analysis completed successfully",
+                    "data": {
+                        "pixel": [600, 800],
+                        "list": [
+                            {
+                                "label": "food1",
+                                "bbox": [882, 795, 1000, 812],
+                                "nutrition": {
+                                    "Calories": 100,
+                                    "Fat": 10,
+                                    "Protein": 20,
+                                    "Carbs": 30
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    }
+})
+async def analyze_gemini(food_img: UploadFile = File(...)):
+    if not food_img:
+        raise create_error_response(
+            code=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            details="You must provide an image file"
+        )
+
+    try:
+        # Read image bytes directly
+        image_bytes = await food_img.read()
+        
+        # Create an instance of FoodRecognition with bytes
+        food_recognition = FoodRecognition(image_bytes)
+        formatted_output = util.analysis_gemini(food_recognition)
+
+        return create_success_response(
+            message="Gemini analysis completed successfully",
+            data=formatted_output
+        )
+    finally:
+        await food_img.close()

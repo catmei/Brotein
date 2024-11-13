@@ -346,3 +346,25 @@ def get_diet_history_from_db(username: str, db: Session, filter_date: datetime.d
         })
 
     return result
+
+
+def analysis_gemini(food_recognition):
+    """Return the complete formatted output matching the required format"""
+    food_items = food_recognition.get_food_list_with_nutrition()
+    food_labels = [item["label"] for item in food_items]
+    bounding_boxes = food_recognition.get_bounding_boxes(food_labels)
+    
+    formatted_list = []
+    
+    for idx, food_item in enumerate(food_items):
+        formatted_item = {
+            "label": food_item["label"],
+            "bbox": bounding_boxes[food_item["label"]],
+            "nutrition": food_item["nutrition"]
+        }
+        formatted_list.append(formatted_item)
+
+    return {
+        "pixel": list(food_recognition.pixel),
+        "list": formatted_list
+    }
